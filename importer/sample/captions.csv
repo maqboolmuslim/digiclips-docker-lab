@@ -1,0 +1,11 @@
+call_sign,chunk_start,frame_no,spoken_at,content
+KCNC,2026-10-15 18:00:00,180,2026-10-15 18:00:06,Good evening Denver here is what is happening tonight
+KCNC,2026-10-15 18:00:00,4320,2026-10-15 18:02:24,The city council voted on the new light rail plan
+KCNC,2026-10-15 18:00:00,9000,2026-10-15 18:05:00,Snow is expected in the mountains this weekend
+KCNC,2026-10-15 18:00:00,16200,2026-10-15 18:09:00,Broncos fans are getting ready for Sunday
+KCNC,2026-10-15 18:08:00,1800,2026-10-15 18:09:00,Broncos fans are getting ready for Sunday
+KCNC,2026-10-15 18:08:00,6000,2026-10-15 18:11:20,Light rail riders say the trains are often late
+KUSA,2026-10-15 18:00:00,900,2026-10-15 18:00:30,Welcome to 9News at six
+KUSA,2026-10-15 18:00:00,7200,2026-10-15 18:04:00,Light rail expansion will cost the city more than planned
+KOA,2026-10-15 07:00:00,2700,2026-10-15 07:01:30,Traffic on I-25 is slow near downtown this morning
+KOA,2026-10-15 07:00:00,10800,2026-10-15 07:06:00,Snow chains are required on I-70 past Idaho Springs
