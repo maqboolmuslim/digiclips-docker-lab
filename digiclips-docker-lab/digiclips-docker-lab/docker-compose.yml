@@ -1,0 +1,45 @@
+# DigiClips mini lab: 3 containers that work together
+#   db       -> MySQL 8 with my schema loaded on first start
+#   importer -> Python script that loads sample caption chunks, then stops
+#   api      -> small FastAPI REST API that reads the data
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3307:3306"          # 3307 on my laptop, so it does not clash with a local MySQL
+    volumes:
+      - dbdata:/var/lib/mysql             # data survives "docker compose down"
+      - ./db/init:/docker-entrypoint-initdb.d:ro   # runs ONLY when the volume is empty
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u$$MYSQL_USER -p$$MYSQL_PASSWORD"]
+      interval: 5s
+      retries: 20
+
+  importer:
+    build: ./importer
+    env_file: .env
+    environment:
+      DB_HOST: db            # service name works like a hostname inside the compose network
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build: ./api
+    env_file: .env
+    environment:
+      DB_HOST: db
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  dbdata:
